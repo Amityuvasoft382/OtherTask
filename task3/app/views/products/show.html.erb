@@ -1,0 +1,39 @@
+<p align="center"><strong> Product :- </strong>
+	<%= @product.c_name+" "+ @product.p_name%>
+</p>
+<p align="center"><strong> Product Type </strong><%= @product.p_type %></p>
+<p align="center"><strong> Price :- </strong><%= @product.s_price%></p>
+<% if @product.qui > 0%>
+<p align="center"><strong> Available( In Pieces ) :- </strong><%=@product.qui%></p>
+<%else%>
+<p align="center"><strong> Available( In Pieces ) :- </strong><strong>Out Of Stock</strong></p>
+<%end%>
+<%if user_signed_in?%>
+<!-- wITH STRIPE -->
+
+<!-- <h6 align="center"><%#= button_to "Buy now!", checkout_create_path, params: {id: @product.id}, remote: true ,class: "btn btn-primary"  %></h6> -->
+
+<!--  -->
+<div align="center">
+<%= form_tag checkout_create_path,  method: :post, data: { turbo: false } do %>
+    <label> Quentity to Purchase</label>
+    <br>
+	<input type="number" name="quantity" />
+	<br>
+	<br>
+	<input type="hidden" name="p_id" value="<%= @product.id %>"  />
+	<%= submit_tag "Buy Now", data: { disable_with: "Hold please..." }, class: "btn btn-dark" %>
+	<% end %>
+<!--  --></div>
+
+<%else%>
+<h6 align="center"><%= link_to "Buy now", new_user_session_path, class: " btn btn-default" %></h6>
+<%end%>
+<!--  -->
+
+<!--  -->
+<br>
+<h5 align="center"><%= link_to "back", root_path,class: "btn btn-dark" %></h5>
+
+
+<!--  -->

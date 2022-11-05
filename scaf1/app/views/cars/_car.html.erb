@@ -1,0 +1,12 @@
+<% @cars.each do |car|%>
+
+<tr>
+<td align="center"><%= car.c_name+" "+car.m_name%></td>
+
+<td align="center"><%= link_to "Show", car %></td>
+
+<td align="center"><%= link_to "Edit", edit_car_path(car) %></td>
+<td align="center"><%= link_to "delete", car, method: :delete,remote:true,data: { confirm: 'Are you sure?' }%></td>
+</tr>
+
+<%end%>

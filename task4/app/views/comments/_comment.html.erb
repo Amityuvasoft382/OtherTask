@@ -1,0 +1,29 @@
+
+<%#@comments = @post.comments.all%>
+<% @comments.each do |comment|%>
+<tr>
+  <%#debugger%>  
+  <td scope="col">
+    <%= comment.username %>
+  </td>
+  <td scope="col">
+    <%= comment.com %>
+  </td>
+
+  <% if user_signed_in? %>
+  <% if current_user.id == comment.user_id %>
+
+  <td scope="col" align="center"><%= link_to 'Delete',comment,class: "btn btn-default", id:"del" ,
+  :method => :delete, remote: true,
+  data: { confirm: 'Are you sure?' }
+%></td>
+<%else%>
+<td scope="col" align="center">-</td>
+<%end%>
+<%else%>
+<td scope="col" align="center">-</td>
+<%end%>
+
+
+</tr>
+<%end%>

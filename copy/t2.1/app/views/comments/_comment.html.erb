@@ -1,0 +1,30 @@
+
+<%@comments = @post.comments.all%>
+<% @comments.each do |comment|%>
+<tr>
+
+ <%#debugger%>
+  <td scope="col"><%=image_tag(User.find(comment.user_id).image.small_thumb.url, alt: 'Image')if User.find(comment.user_id).image?%></td>
+  
+  <td scope="col">
+    <%= comment.user %>
+  </td>
+  <td scope="col">
+    <%= comment.com %>
+  </td>
+
+  <% if user_signed_in? %>
+  <td scope="col" align="center"> <%= link_to 'Show',comment,class: "btn btn-default" %> </td>
+  <% if current_user.username == comment.user %>
+
+  <td scope="col" align="center"><%= link_to 'Delete',  comment,class: "btn btn-default",
+  :method => :delete, remote: true,
+  data: { confirm: 'Are you sure?' }
+%></td>
+<%else%>
+<td scope="col" align="center">-</td>
+<%end%>
+
+<%end%>
+</tr>
+<%end%>

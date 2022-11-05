@@ -1,0 +1,26 @@
+<p id="notice"><%= notice%></p>
+
+<% if user_signed_in? %>
+<!--  -->
+<fieldset>
+	<fieldset>
+		<legend align = "center"><h2>New post</h2></legend>
+		<%=render 'form', post: @post%>
+	</fieldset>
+	<%end%>
+
+	<table align="center">
+		<thead>
+			<tr>
+				<th></th>
+				<th >Title</th>
+				<th > User Email </th>
+				
+			</tr>
+		</thead>
+
+		<tbody id='posts'>
+			<%= render partial: 'post', posts:@posts %>
+		</tbody>
+	</table>
+</fieldset>

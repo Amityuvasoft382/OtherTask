@@ -1,0 +1,22 @@
+ <fieldset align="center">
+     <legend align ="center"><h2> User Detail :</h2></legend>
+
+      <% if current_user.image.attached? %>
+                 <p align="center"><%= image_tag current_user.image.representation(resize_to_limit: [250, 250]) %></p> 
+      <% end %> 
+     <p align ="center"><strong> Username :</strong> <%= @user.username %></p>
+  	 <p align ="center"><strong> ID :</strong> <%= @user.unique_id %></p>
+  	 <p align ="center"><strong> Email :</strong> <%= @user.email %></p>
+     <fieldset align = "center">
+      <%if @user.departments != []%>
+     <p align="center"><strong>Department Name :</strong><strong><%=@user.departments.first.name%></strong></p>
+     <p align="center"><strong>Department Duty In :</strong><strong><%=@user.departments.first.clock_in%></strong></p>
+     <p align="center"><strong>Department Duty out :</strong><strong><%=@user.departments.first.clock_out%></strong></p>
+     <%else%>
+     <h1 align="center"> No Duty Allocated </h1>
+     <%end%>
+ </fieldset>
+
+ <p align="center" ><%= link_to "back",root_path %></p>
+
+</fieldset>

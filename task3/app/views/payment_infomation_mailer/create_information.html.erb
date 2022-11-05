@@ -1,0 +1,23 @@
+<h1>Payment Information</h1>
+
+<p>
+  Dear Customer
+</p>
+
+ <h5> Thank You For Purchasing And We hope you like Our Services The Product Informantion given Below</h5>
+ <hr>
+
+<h4 align="center">Product Info</h4>
+
+<p align="center"><strong> Product :- </strong>
+  <%= @product.c_name+" "+ @product.p_name%>
+</p>
+<p align="center"><strong> Product Type </strong><%= @product.p_type %></p>
+<p align="center"><strong> Price per Unit :- </strong><%= @product.s_price%></p>
+<p align="center"><strong> Total Unit Purchased :-</strong><%= @qui %></p>
+<p align="center"><strong> Total Price :- </strong><%= @product.s_price*@qui.to_i %></p>
+
+
+<hr>
+
+<h5>Thanks to visit our app. </h5>

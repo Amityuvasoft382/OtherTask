@@ -1,0 +1,222 @@
+<p id="notice"><%= notice %></p>
+<% if user_signed_in?%>
+  
+
+<!-- Modal -->
+<div align="center">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  New Post 
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" align="center" id="exampleModalLabel">New post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div align="center">
+<h1>New Post</h1>
+
+<%= render 'form', post: @post %>
+
+
+</div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'Back', posts_path ,class:"btn btn-secondary text-white"%>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+</div>
+
+<h1>Posts</h1>
+
+<table class="table table-striped bg-light" align="center">
+  <thead align="center">
+    <tr>
+      <th>Title</th>
+      <th>Detail</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody align="center">
+  <% @posts.each do |post| %>
+  <%if post.approve%>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.detail %></td>
+        <!--  -->
+        <td><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#showModal<%=post.id%>"> 
+  Show Post </button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="showModal<%=post.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" align="center" id="exampleModalLabel"> Edit post </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div align="center">
+<h1>Show post</h1>
+
+<%= render 'show', post: post %>
+
+
+</div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'Back', posts_path ,class:"btn btn-dark text-light"%>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+        <!--  -->
+        <%if user_signed_in?%>
+        <%if post.user_id == current_user.id %>
+           <!-- <td><%#= link_to 'Edit', edit_post_path(post) %></td> -->
+
+           <!--  -->
+           <td>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<%=post.id%>"> 
+  Edit post </button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal<%=post.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" align="center" id="exampleModalLabel"> Edit post </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div align="center">
+<h1>Edit post</h1>
+
+<%= render 'form', post: post %>
+
+
+</div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'Back', posts_path ,class:"btn btn-dark text-light"%>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</td>
+
+           <!--  -->
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' },remote:true ,class:"btn btn-dark text-light"%></td>
+        <%else%>
+          <td>-</td>
+          <td>-</td>
+        <%end%>
+        <td>-</td>
+        <%end%>
+      </tr>
+     <%else%>
+     <%if current_user.id==post.user_id%>
+     <tr>
+       <td><%= post.title%></td>
+       <td><%= post.detail%></td>
+       <td><strong class="text-danger">Not Approved</strong></td>
+       <!-- -------------------------------------------- -->
+       <td><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#showModal<%=post.id%>"> 
+  Show Post </button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="showModal<%=post.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" align="center" id="exampleModalLabel"> Edit post </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div align="center">
+<h1>Show post</h1>
+
+<%= render 'show', post: post %>
+
+
+</div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'Back', posts_path ,class:"btn btn-dark text-light"%>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+       <!-- -------------------------------------------- -->
+       <!-- ------------------Edit option------------------ -->
+       <%if current_user.id == post.user_id%>
+                   <td>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<%=post.id%>"> 
+  Edit post </button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal<%=post.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" align="center" id="exampleModalLabel"> Edit post </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div align="center">
+<h1>Edit post</h1>
+
+<%= render 'form', post: post %>
+
+
+</div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'Back', posts_path ,class:"btn btn-dark text-light"%>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</td>
+       <%else%>
+         <td>-</td>
+       <%end%>
+       <!-- --------------------Edit end-------------------- -->
+       <td><%= button_to 'Approve', approve_post_path(post),remote:true,class: "btn btn-dark" %></td>
+     <%end%>
+     
+      </tr>
+     
+
+    <% end %>
+    <%end%>
+  </tbody>
+</table>
+
+<br>
+<%else%>
+<h1 class="container bg-info"> Please Login To access</h1>
+<%end%>

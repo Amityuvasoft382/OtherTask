@@ -1,0 +1,36 @@
+<fieldset>
+<% if user_signed_in? %>
+  <legend align='center'>Logged in as <strong><%= current_user.username %></strong></legend>
+  <p align="center"><%= link_to 'Edit profile', edit_user_registration_path %></p>
+  <p align="center"><%= link_to "Logout", destroy_user_session_path, method: :delete  %></p>
+  
+  	<% if current_user.has_role? :md%> 
+  	 
+  	 <table>
+  	 	<thead>
+  	 		<tr>
+  	 			<th> Username</th>
+  	 		</tr>
+  	 	</thead>
+  	 	<% @users.each do |user|%>
+  	 	<tbody>
+  	 		<tr>
+  	 			<td><%=user.username%></td>
+
+  	 		</tr>
+  	 		
+  	 	</tbody>
+  	 	<%end%>
+  	 </table>
+  	 <%else%>
+  	 <p><strong>Username</strong> <%= current_user.username %></p>
+  	 <p><strong>ID</strong> <%= current_user.unique_id %></p>
+  	 <p><strong>Email</strong> <%= current_user.email %></p>
+  	 <%end%>
+  
+<% else %>
+<legend align = "center">For Sign Up and Login</legend>
+  <p align="center"><%= link_to "Sign up", new_user_registration_path  %></p>
+  <p align="center"><%= link_to "Login", new_user_session_path  %></p>
+<% end %>
+</fieldset>

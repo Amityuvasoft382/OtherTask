@@ -1,0 +1,6 @@
+<fieldset align ="center">
+	<legend align = "center"><h2>New post</h2></legend>
+		<%#=render 'form', product: @product%>
+		<%=render 'form', product: @product%>
+		<h5 align="center"><%= link_to "back", product_path(@product),class: "btn btn-dark" %></h5>
+</fieldset>

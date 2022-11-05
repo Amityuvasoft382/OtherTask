@@ -1,0 +1,46 @@
+<p id="notice"><%= notice%></p>
+<fieldset>
+	<fieldset class="container">
+		<legend align = "center"><h2>New car</h2></legend>
+		<%=render 'form', car: @car%>
+	</fieldset>
+
+
+	<div class="container p-5 my-5 bg-warning text-white">
+		<h1 align="center"> Cars List  </h1>
+	</div>
+
+	<table  class="table">
+		<thead>
+			<tr  align="center">
+				<th scope="col"> Name </th>
+				<th scope="col" align="center"> Option1 </th>
+				<th scope="col" align="center"> Option2 </th>
+				<th scope="col" align="center"> Option3 </th>
+			
+				
+			</tr>
+		</thead>
+
+		<tbody id='cars'>
+			<%= render partial: 'car', cars:@cars %>
+		</tbody>
+	</table>
+</fieldset>
+
+
+
+ <script >
+	function submitMyForm(e) {
+		//debugger 
+	// var car_name = 	$("#car_name").val();
+	// var car_quantity = $("#car_quantity").val();
+	var car = $("#new_car").serialize();
+	$.ajax({
+		method: "post",
+		url: "<%= cars_url %>", 
+		data: car
+	});
+
+	}
+</script>

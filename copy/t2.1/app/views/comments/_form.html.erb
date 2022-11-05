@@ -1,0 +1,16 @@
+
+<%= form_with model: Comment.new, local: false, id:"new_comment", url: comments_path, html: { method: :post } do |form| %>
+
+
+<fieldset class="field">
+    <legend> Comment </legend>
+    <%= form.text_area :com %>
+  </fieldset>
+  <%= form.hidden_field :user, value: current_user.username %>
+  <%= form.hidden_field :post_id, value: @post.id %>
+  <%= form.hidden_field :post_id, value: current_user.id %>
+  <fieldset class="field">
+    <%= form.submit %>
+  </fieldset>
+   
+<% end %>

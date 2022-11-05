@@ -1,0 +1,29 @@
+<fieldset class="container p-5 my-5 bg-default">
+	
+	<% if user_signed_in? %>
+	<% if current_user.roles.first.name == "seller"%>
+	<fieldset align = "center">
+		<legend align = "center"><h2>New post</h2></legend>
+		<%=render 'form', product: @product%>
+	</fieldset>
+	<%end%>
+	<%end%>
+
+	<table align="center" class="table table table-default">
+		<thead >
+			<tr align="center">
+				<th align="center"> Product </th>
+				<% if user_signed_in? %>
+				<th align="center" ,scope="col"> </th>
+				<th align="center" ,scope="col"> </th>
+
+				<%end%>
+			</tr>
+		</thead>
+
+		<tbody id='products'>
+			<%= render partial: 'product', products:@products %>
+		</tbody>
+	</table>
+	
+</fieldset>

@@ -1,0 +1,67 @@
+<fieldset>
+<% if user_signed_in? %>
+  <legend align='center'>Logged in as <strong><%= current_user.username %></strong></legend>
+  <p align="center"><%= link_to 'Edit profile', edit_user_registration_path %></p>
+  <p align="center"><%= link_to "Logout", destroy_user_session_path, method: :delete  %></p>
+  
+  	<% if current_user.has_role? :md%> 
+  	 
+  	 <table>
+  	 	<thead>
+  	 		<tr>
+  	 			<th align="center"> ID </th>
+          <th align="center"> Username </th>
+          <th align="center"> Email </th>
+          <th align="center"> Role </th>
+
+
+  	 		</tr>
+  	 	</thead>
+  	 	<% @users.each do |user|%>
+  	 	<tbody>
+        <%if user.roles.first.name == "doctor"%> 
+  	 		<tr>
+          <td align="center"><%=user.unique_id%></td>
+  	 			<td align="center"><%=user.username%></td>
+          <td align="center"><%=user.email%></td>
+        <!--  <td align="center"><%#=user.roles.first.name%></td> -->
+          
+         <td><%= link_to 'Edit',edit_user_path(user) %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+
+  	 		</tr>
+  	 	</tbody>
+  	 	<%end%>
+     </table>
+     <fieldset align="center">
+          <legend align = "center"><strong>Add Department</strong></legend>
+          <%= link_to "Department", departments_path %>
+        </fieldset>
+  	 <%else%>
+  	 <p><strong>Username</strong> <%= current_user.username %></p>
+  	 <p><strong>ID</strong> <%= current_user.unique_id %></p>
+  	 <p><strong>Email</strong> <%= current_user.email %></p>
+     <p><strong><%#= @department.name%></strong></p>
+     <p><strong><%#= @department.clock_in %></strong></p>
+     <p><strong><%#= @department.clock_out %></strong></p>
+     <p><strong><%#= @department.date %></strong></p>
+     <fieldset>
+      <%if @user.departments != []%>
+     <p><strong>Department Name :</strong><strong><%=@user.departments.first.name%></strong></p>
+     <p><strong>Department Duty In :</strong><strong><%=@user.departments.first.clock_in%></strong></p>
+     <p><strong>Department Duty out :</strong><strong><%=@user.departments.first.clock_out%></strong></p>
+     <%else%>
+     <h1 align="center"> No Duty Allocated </h1>
+
+   </fieldset>
+   <%end%>
+  	 <%end%>
+  
+<% else %>
+<legend align = "center">For Sign Up and Login</legend>
+  <p align="center"><%= link_to "Sign up", new_user_registration_path  %></p>
+  <p align="center"><%= link_to "Login", new_user_session_path  %></p>
+
+<% end %>
+</fieldset>

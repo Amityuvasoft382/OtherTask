@@ -1,0 +1,37 @@
+<p id="notice"><%= notice%></p>
+<fieldset>
+	<fieldset>
+		<legend align = "center"><h2>New product</h2></legend>
+		<%=render 'form', product: @product%>
+	</fieldset>
+
+	<table align="center">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Name</th>
+			</tr>
+		</thead>
+
+		<tbody id='products'>
+			<%= render partial: 'product', products:@products %>
+		</tbody>
+	</table>
+</fieldset>
+
+
+
+<script >
+	function submitMyForm(e) {
+		//debugger 
+	var product_name = 	$("#product_name").val();
+	var product_quantity = $("#product_quantity").val();
+	var product = $("#new_product").serialize();
+	$.ajax({
+		method: "post",
+		url: "<%= products_url %>", 
+		data: product
+	});
+
+	}
+</script>

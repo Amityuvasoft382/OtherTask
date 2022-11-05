@@ -1,0 +1,12 @@
+<%= form_with(model: [ @post, @post.comments.build ],id:"new_comment",local: false) do |form|%>
+  <fieldset class="field">
+    <legend> Comment </legend>
+    <%= form.text_area :comment %>
+  </fieldset>
+  <%= form.hidden_field :user, value: current_user.email %>
+  <%#= form.hidden_field :post_id, value: @post.id %>
+  <fieldset class="field">
+    <%= form.submit %>
+  </fieldset>
+   
+<% end %>

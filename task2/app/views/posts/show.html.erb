@@ -1,0 +1,43 @@
+<p id="notice"><%= notice%></p>
+
+<fieldset align = "center">
+	<div class="container" align ="center"><strong> Title :</strong> <%= @post.title %></div>
+	<div class="container" align ="center"><strong> Details :</strong> <%= @post.detail %></div>
+	<div class="container" align ="center"><strong> User :</strong> <%= User.find(@post.user_id).email %></div>
+	<% if user_signed_in? %>
+	<p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+	<% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+  <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
+<% else %>
+  <%= button_to 'Like', post_likes_path(@post), method: :post %>
+<% end %>
+	<% if current_user.id == @post.user_id %>
+	<p align="center"><%= link_to "Edit", edit_post_path(@post) %></p>
+	<p align="center"><%= link_to "delete", @post, method: :delete,data: { confirm: 'Are you sure?' }%></p>
+	<%end%>
+
+	<%end%>
+	<p align="center"><%= link_to "back", root_path %></p>
+	
+	<fieldset>
+		<legend align= "center"> Comments</legend>
+		<table>
+			<thead>
+				<th> Username</th>
+				<th> Comment </th>
+			</thead>
+			<tbody id="comments">
+				<%#= render @post.comments %>
+				<%= render partial: 'comments/comment', comments:@comments %>
+			</tbody>
+		</table>
+		<% if user_signed_in? %>
+
+		<h3> Add Comment</h3>
+		<%= render 'comments/form'  %>
+	</fieldset>
+	<%end%>
+	
+
+</fieldset>

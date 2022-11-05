@@ -1,0 +1,56 @@
+<fieldset>
+<%= form_with(model: @book,id:"new_book",local: false) do |form|%>
+	<!-- Errors code -->
+	<% if book.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+		<ul>
+			<% book.errors.each do |error| %>
+			<li><%= error.full_message %></li>
+			<% end %>
+		</ul>
+		<%end%>
+	</div>
+
+	<fieldset class="field">
+		<legend>Book Name</legend>
+		<%= form.text_field :name%>
+	</fieldset>
+	<fieldset class="field">
+		<legend>Author Name</legend>
+		<%= form.text_field :author%>
+	</fieldset>
+	<fieldset class="field">
+		<legend>Book gen</legend>
+			<ul>
+		<li><%= form.radio_button :gen, "Fantasy" %>
+        <%= form.label :Fantasy %></li>
+        <li><%= form.radio_button :gen, "Sci-fi" %>
+        <%= form.label :Sci_fi %></li>
+        <li><%= form.radio_button :gen, "Action" %>
+        <%= form.label :Action %></li>
+        <li><%= form.radio_button :gen, "Inspirational" %>
+        <%= form.label :Inspirational %></li>
+        <li><%= form.radio_button :gen, "Documentary" %>
+        <%= form.label :Documentary %></li>
+        <li><%= form.radio_button :gen, "Horror" %>
+        <%= form.label :Horror %>
+        <li><%= form.radio_button :gen, "Mystery" %>
+        <%= form.label :Mystery %></li>
+        <li><%= form.radio_button :gen, "Other" %>
+        <%= form.label :Other %></li>
+    </ul>
+
+	</fieldset>
+	<fieldset class="field">
+		<legend>Book Price</legend>
+		<%= form.text_field :price%>
+	</fieldset>
+
+	<div class="field" align="center">
+		<%= form.submit %>
+	</div>
+
+<%end%>
+</fieldset>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice%></p>
+<fieldset>
+	<fieldset>
+		<legend align = "center"><h2>New book</h2></legend>
+		<%=render 'form', book: @book%>
+	</fieldset>
+
+	<table align="center">
+		<thead>
+			<tr>
+				<th align="center"> Name </th>
+			
+				<th align="center"> Genres </th>
+			</tr>
+		</thead>
+
+		<tbody id='books'>
+			<%= render partial: 'book', books:@books %>
+		</tbody>
+	</table>
+</fieldset>
+
+
+
+<!-- <script >
+	function submitMyForm(e) {
+		//debugger 
+	// var book_name = 	$("#book_name").val();
+	// var book_quantity = $("#book_quantity").val();
+	var book = $("#new_book").serialize();
+	$.ajax({
+		method: "post",
+		url: "<%= books_url %>", 
+		data: book
+	});
+
+	}
+</script>
+ -->

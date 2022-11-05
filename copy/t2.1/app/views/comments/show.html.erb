@@ -1,0 +1,15 @@
+<fieldset>
+	<legend align ="center"><h1> Comment Details </h1></legend>
+	<h2 align="center"><strong>User    :</strong><%= @comment.user%> </h2>
+	<h4 align="center"><strong>Comment :</strong><%= @comment.com%> </h4>
+	
+	<h6 align="center"><p class="mb-0"><%= @comment.likes.count %> <%= (@comment.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+	<% pre_like = @comment.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+  <%= button_to 'Unlike', comment_like_path(@comment, pre_like),remote:true, method: :delete %>
+<% else %>
+  <%= button_to 'Like', comment_likes_path(@comment),remote:true, method: :comment %>
+<% end %></h6>
+
+<h6 align="center"><%= link_to 'Back', post_path(@comment.post_id),class: "btn btn-default" %></h6>
+</fieldset>

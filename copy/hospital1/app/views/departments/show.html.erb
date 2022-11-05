@@ -1,0 +1,21 @@
+<fieldset align="center"><legend align = "center"><h3>Department Details</h3></legend>
+	
+	<p align="center"><strong> Department Name : </strong>
+		<strong><%= @department.name%></strong></p>
+	<p align="center"><strong> Duty In Time : </strong>
+		<strong><%= @department.clock_in%></strong></p>
+	<p align="center"><strong> Duty Out Time : </strong>
+		<strong><%= @department.clock_out%></strong></p>
+	<p align="center"><strong> Doctor Incharge : </strong>
+		<strong><%= @user.username%></strong></p>
+	<p align="center"><strong> Modified at : </strong>
+		<strong><%= @department.date%></strong></p>
+	<fieldset>
+		<p align="center"><%= link_to "Home", root_path %></p>
+		<p align="center"><%= link_to "Back", departments_path %></p>
+		<p align="center"><%= link_to "Destroy", department_path(@department),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></p>
+        <p align="center"><%= link_to "Edit", edit_department_path(@department) %></p>
+	</fieldset>
+</fieldset> 

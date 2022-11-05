@@ -1,0 +1,14 @@
+<fieldset align="center">
+	<legend><h2>Product Details</h2></legend>
+	<p align="center"><strong> Name           : </strong><%=@product.p_name%></p>
+	<p align="center"><strong> Company name   : </strong><%=@product.c_name%></p>
+	<p align="center"><strong> Product Type   : </strong><%=@product.p_type%></p>
+	<p align="center"><strong> Price          : </strong><%=@product.price%></p>
+	<p align="center"><strong> Order          : </strong><%=@product.order%></p>
+</fieldset>
+<fieldset align="center">
+	<p align="center"><%= link_to "Edit", edit_product_path(@product) %></p>
+			<p align="center"><%= link_to "delete", @product, method: :delete,data: { confirm: 'Are you sure?' }%></p>
+	
+	<p align="center"><%= link_to "back", root_path %></p>
+</fieldset>

@@ -1,0 +1,6 @@
+$('#del').bind('ajax:success', function() {
+   $(this).closest('tr').fadeOut();
+});
+
+$("#comments").html("<%= j render partial: 'comment', comments: @comments %>");
+$("#new_comment")[0].reset();

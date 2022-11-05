@@ -1,0 +1,53 @@
+<p id="notice"><%= notice%></p>
+
+<fieldset align = "center" class="container p-5 my-5 bg-default ">
+	<div class="container" align="center">
+		<%if @post.image?%>
+		<legend><strong>Image</strong></legend>
+		<%= link_to(image_tag(@post.image.thumb.url, alt: 'Image'), @post.image.url, target: '_blank') if @post.image? %>
+		<%end%>
+
+		
+	</div>
+	<div class="container" align ="center"><strong> Title :</strong> <%= @post.title %></div>
+	<div class="container" align ="center"><strong> Details :</strong> <%= @post.detail %></div>
+	<div class="container" align ="center"><strong> User :</strong> <%= User.find(@post.user_id).email %></div>
+	<% if user_signed_in? %>
+
+	<% if current_user.id == @post.user_id %>
+	<p align="center"><%= link_to "Edit", edit_post_path(@post),class: "btn btn-default" %></p>
+	<p align="center"><%= link_to "delete", @post,class: "btn btn-default", method: :delete,data: { confirm: 'Are you sure?' }%></p>
+	<%end%>
+
+	<%end%>
+	<h5 align="center"><%= link_to "back", root_path,class: "btn btn-default" %></h5>
+	<fieldset class="container p-5 my-5 bg-default">
+		<div class="row">
+			<% if user_signed_in? %>
+
+			<h3> Add Comment</h3>
+			<%= render 'comments/form', post: @post %>
+			<%end%>
+		</div>
+
+		<legend align= "center"> Comments</legend>
+		<table class="table table table-striped table-default">
+			<thead>
+				<th scope="col"> </th>
+				<th scope="col"> Username</th>
+				<th scope="col"> Comment </th>
+				<% if user_signed_in?%>
+				<th scope="col"> </th>
+				<th scope="col"> </th>
+				<% end%>
+			</thead>
+			<tbody id="comments">
+				<%#= render @post.comments %>
+				<%= render partial: 'comments/comment', comments:@comments %>
+			</tbody>
+		</table>
+	</fieldset>
+
+
+
+</fieldset>

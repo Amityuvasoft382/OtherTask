@@ -1,0 +1,7 @@
+var body = document.getElementById("cars");
+body.innerHTML = "<%= j render @car %>" + body.innerHTML;
+
+// clear and focus on input
+var input = document.getElementById("car_name");
+input.value = '';
+input.focus();

@@ -1,0 +1,35 @@
+
+<fieldset class="container p-5 my-5 bg-default">
+	<% if user_signed_in? %>
+	
+	<fieldset align = "center">
+		<legend align = "center"><h2>New post</h2></legend>
+		<%=render 'form', post: @post%>
+	</fieldset>
+	
+
+	<table align="center" class="table table table-default">
+		<thead>
+			<tr align="center">
+				<th align="center", scope="col" >Title</th>
+				<th align="center" ,scope="col" > Username </th>
+				<th align="center" ,scope="col" > Show</th>
+				<th align="center" ,scope="col"> </th>
+				<th align="center" ,scope="col"> </th>
+
+			</tr>
+		</thead>
+
+		<tbody id='posts'>
+			<%= render partial: 'post', posts:@posts %>
+		</tbody>
+	</table>
+	
+</fieldset>
+<%else%>
+<div class="container-fluid" align="center">
+ <h3 align="center"> Welcome To Task 4 </h3>
+ <br>
+ <h4 align="center"> Login For Access  </h4>
+</div>
+<%end%>

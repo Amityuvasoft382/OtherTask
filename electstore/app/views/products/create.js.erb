@@ -1,0 +1,10 @@
+// var body = document.getElementById("products");
+// body.innerHTML = "<%= j render @product %>" + body.innerHTML;
+
+// // clear and focus on input
+// var input = document.getElementById("product_name");
+// input.value = '';
+// input.focus();
+debugger
+$("#products").html("<%= j render partial: 'product', products: @products %>");
+$("#new_product")[0].reset();

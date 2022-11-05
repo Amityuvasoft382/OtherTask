@@ -1,0 +1,95 @@
+<p id="notice"><%= notice%></p>
+<!--  -->
+<fieldset align = "center">
+
+	<% if @post.lock_image %>
+	<div class="container" align="center"><%= link_to(image_tag(@post.image.thumb.url, alt: 'Image'), @post.image.url, target: '_blank') if @post.image? %></div>
+	<% if user_signed_in?%>
+	<% if current_user.id == @post.user_id%>
+	<br>
+	<div class="container" align="center"><%= button_to 'Lock Image', lock_post_path(@post),remote:true,class: "btn btn-dark" %></div>
+	<%end%>
+	<%end%>
+	<%else%>
+	<!--  for unlock -->
+	<% if user_signed_in? %>
+	<%if current_user.id== @post.user_id%>
+	<div class="container" align="center">
+		<%= link_to(image_tag(@post.image.thumb.url, alt: 'Image'), @post.image.url, target: '_blank') if @post.image? %>
+	</div>
+	<br>
+	<div class="container" align="center"><%= button_to 'unlock Image', unlock_post_path(@post),remote:true,class: "btn btn-dark" %></div>
+	<%else%>
+	<h3 align="center"> Image Not Found</h3>
+	<%end%>
+	<%else%>
+	<h3 align="center"> Image Not Found</h3>
+	<%end%>
+	<!--  -->
+	<!-- <h3 align="center"> Image Not Found</h3> -->
+</div>
+<%end%>
+</fieldset>
+<!--  -->
+<fieldset align = "center" class="container p-5 my-5 ">
+	<div class="container" align ="center"><strong> Title :</strong> <%= @post.title %></div>
+	<div class="container" align ="center"><strong> Details :</strong> <%= @post.detail %></div>
+	<div class="container" align ="center"><strong> User :</strong> <%= User.find(@post.user_id).username %></div>
+	<%if user_signed_in?%>
+	<% if current_user.id == @post.user_id or current_user.roles.first.name== "admin" %>
+	<div class="container" align ="center"><strong> Status :</strong> <%= @post.approve %></div>
+	<%end%>
+	<%end%>
+	<br>
+	<br>
+
+	<% if user_signed_in? %>
+	<% if current_user.roles.first.name=="admin"%>
+	<% if @post.approve%>
+	<div class="container" align="center"><%= button_to 'Deapprove', deapprove_post_path(@post),remote:true,class: "btn btn-dark" %></div>
+	<%else%>
+	<div class="container" align="center"><%= button_to 'Approve', approve_post_path(@post),remote:true,class: "btn btn-dark" %></div>
+	<%end%>	
+	<%end%>
+	<br>
+
+	<% if current_user.id == @post.user_id or current_user.roles.first.name== "admin" %>
+	<p align="center"><%= link_to "Edit", edit_post_path(@post),class: "btn btn-dark" %></p>
+	<p align="center"><%= link_to "delete", @post,class: "btn btn-dark", method: :delete,data: { confirm: 'Are you sure?' }%></p>
+	<%end%>
+		<br>
+	<h5 align="center"><%= link_to "back", root_path,class: "btn btn-dark" %></h5>
+
+	<%end%>
+	<% if @post.approve%>
+	<fieldset class="container p-5 my-5 bg-default">
+		<div class="row">
+			<% if user_signed_in? %>
+
+			<h3> Add Comment</h3>
+			<%= render 'comments/form', post: @post %>
+			<%end%>
+		</div>
+
+		<legend align= "center"> Comments</legend>
+		<table class="table table table-striped table-default">
+			<thead>
+				<th scope="col"> Username</th>
+				<th scope="col"> Comment </th>
+				<% if user_signed_in?%>
+				<th scope="col"> </th>
+				<% end%>
+			</thead>
+			<tbody id="comments">
+				<%#= render @post.comments %>
+				<%= render partial: 'comments/comment', comments:@comments %>
+			</tbody>
+		</table>
+	</fieldset>
+	<%end%>
+
+
+
+
+
+</fieldset>

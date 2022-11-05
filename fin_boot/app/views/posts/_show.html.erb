@@ -1,0 +1,78 @@
+<fieldset align="center">
+
+  <% if user_signed_in?%>
+  <%if current_user.id==post.user_id%>
+  <% if post.lock_image %>
+  <div align="center"><%= button_to"lock",lock_post_path(post),remote:true, class:"btn btn-dark"%></div> 
+  <%else%>
+  <div align="center"><%= button_to"unlock",unlock_post_path(post),remote:true, class:"btn btn-dark"%></div>
+  <%end%>   
+  <%end%>
+  <%end%>
+  <br>
+  <%if post.lock_image%>
+  <div class="container" align="center"><%= link_to(image_tag(post.image.thumb.url, alt: 'Image'), post.image.url, target: '_blank') if post.image? %></div>
+  <%else%>
+  <h3 align="center"> Image Not Found </h3>
+  <%end%>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= post.title %>
+  </p>
+
+  <p>
+    <strong>Detail:</strong>
+    <%= post.detail %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= post.user_id %>
+  </p>
+  <%#= link_to 'Edit', edit_post_path(post) %>
+
+  <!--  -->
+  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#commentModal<%=post.id%>">
+  Add Comment
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="commentModal<%=post.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'comments/form', post: post %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+  <!--  -->
+  <br>
+  <fieldset class="container p-5 my-5 bg-default">
+    <div class="row">
+      <legend align= "center"> Comments</legend>
+      <table class="table table table-striped table-default">
+        <thead>
+          <th scope="col"> Username</th>
+          <th scope="col"> Comment </th>
+          <% if user_signed_in?%>
+          <th scope="col"> </th>
+          <% end%>
+        </thead>
+        <tbody id="comments">
+          <%#= render @post.comments %>
+          <%@comments = post.comments.all%>
+          <%= render partial: 'comments/comment',post:@comments%>
+        </tbody>
+      </table>
+    </div>
+  </fieldset>
+</fieldset>

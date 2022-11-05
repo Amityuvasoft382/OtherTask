@@ -1,0 +1,25 @@
+<p id="notice"><%= notice%></p>
+<fieldset align= "center" >
+<legend align="center"><h2> Department Info </h2></legend>
+ 
+ <table align="center">
+ 	<thead align="center">
+ 		<tr>
+ 			<th align="center"> Department Name </th>
+ 			<th align="center"> Doctor Incharge </th> 
+ 		</tr>
+ 	</thead align="center">
+ 	<% @departments.each do |department| %>
+ 	<tbody align="center">
+ 	   <tr>
+ 		<tr>
+          <td align="center"><%=department.name%></td>
+  	 	  <td align="center"><%=User.find(department.user_id).username%></td>
+  	 	  <td align="center"><%= link_to "Show", department %></td>
+ 		<%end %>	
+ 		</tr>
+ 	</tbody>
+ </table>
+ <p align="center"><%= link_to "Home", root_path %></p>
+ <p align="center"><%= link_to "Add Department", new_department_path %></p>
+</fieldset>

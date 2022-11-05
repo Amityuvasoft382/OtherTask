@@ -1,0 +1,50 @@
+
+<%= form_with(model: @product,id:"new_product",local: false) do |form|%>
+<!-- Errors code -->
+<% if @product.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+	<ul>
+		<% product.errors.each do |error| %>
+		<li><%= error.full_message %></li>
+		<% end %>
+	</ul>
+	<%end%>
+</div>
+
+<fieldset>
+	<legend><strong>Product Name</strong></legend>
+	<%= form.text_field :p_name%>
+</fieldset>
+<fieldset>
+	<legend><strong>Company Name</strong></legend>
+	<%= form.text_field :c_name%>
+</fieldset>
+
+<fieldset>
+	<legend><strong> Product Type</strong></legend>
+	<%= form.text_field :p_type%>
+</fieldset>
+
+<div>
+	<%= form.hidden_field :date_of_purchase, value: Time.now%>
+</div>
+
+
+
+<div>
+	<%= form.hidden_field :qui ,value: 1000%>
+</div>
+<fieldset>
+	<legend><strong>Selling Price</strong></legend>
+	<%= form.number_field :s_price%>
+</fieldset>
+<div>
+	<%= form.hidden_field :user_id, value: current_user.id %>
+</div>
+<div class="mb-3" align="center">
+	<%= form.submit class: "btn btn-dark" %>
+</div>
+
+<%end%>

@@ -1,0 +1,70 @@
+<fieldset>
+	<%= form_with(model: @product,local: false) do |form|%>
+	<!-- Errors code -->
+	<% if product.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+		<ul>
+			<% product.errors.each do |error| %>
+			<li><%= error.full_message %></li>
+			<% end %>
+		</ul>
+		<%end%>
+	</div>
+
+	<fieldset>
+		<legend><strong> Product Name </strong></legend>
+		<%= form.text_field :p_name, placeholder:" Product Name " %>
+	</fieldset>
+
+	<fieldset>
+		<legend><strong> Product Company </strong></legend>
+		<%= form.text_field :c_name , placeholder:" Company Name "%>
+	</fieldset>
+	<fieldset>
+		<legend><strong> Product Type </strong></legend>
+		<%#= form.text_field :p_type %>
+		<ul>
+		<li><%= form.radio_button :p_type, "Mobile" %>
+        <%= form.label :Mobile %></li>
+        <li><%= form.radio_button :p_type, "Laptop" %>
+        <%= form.label :Laptops %></li>
+        <li><%= form.radio_button :p_type, "Computer" %>
+        <%= form.label :Computers %></li>
+        <li><%= form.radio_button :p_type, "Speaker" %>
+        <%= form.label :Speakers %></li>
+        <li><%= form.radio_button :p_type, "screens" %>
+        <%= form.label :Monitor %></li>
+         <li><%= form.radio_button :p_type, "accessories ( Headphone )" %>
+        <%= form.label :Headphone %></li>
+         <li><%= form.radio_button :p_type, "accessories ( Camera )" %>
+        <%= form.label :Camera %></li>
+         <li><%= form.radio_button :p_type, "accessories ( Battery )" %>
+        <%= form.label :Battery %></li>
+        <li><%= form.radio_button :p_type, "Other" %>
+        <%= form.label :Other %></li>
+
+         </ul>
+	</fieldset>
+	<fieldset>
+		<legend><strong> Price </strong></legend>
+		<%= form.text_field :price , placeholder:"10000 Starts"%>
+	</fieldset>
+	<fieldset>
+		<legend><strong> Order (Max =100) </strong></legend>
+		<%= form.label :Order%>
+		<%= form.range_field :order, in: 0..100 ,step: 1%>
+	</fieldset>
+	
+
+
+	
+
+	<div class="field" align="center">
+		<%= form.submit %>
+	</div>
+
+
+	<%end %>
+</fieldset>

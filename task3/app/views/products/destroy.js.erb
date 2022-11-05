@@ -1,0 +1,4 @@
+
+// $('<td scope="col" align="center">#<%= @product.c_name+" "+@product.p_name%></td>').remove();
+$("#products").html("<%= j render partial: 'product', products: @products %>");
+$("#new_product")[0].reset();

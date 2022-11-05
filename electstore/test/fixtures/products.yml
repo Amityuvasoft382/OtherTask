@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  p_name: MyString
+  c_name: MyString
+  price: MyString
+  order: MyString
+  p_type: MyString
+
+two:
+  p_name: MyString
+  c_name: MyString
+  price: MyString
+  order: MyString
+  p_type: MyString

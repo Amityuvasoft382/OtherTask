@@ -1,0 +1,60 @@
+<fieldset>
+	<%= form_with model: @department do |form|%>
+	<!-- Errors code -->
+	<% if department.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(department.errors.count, "error") %> prohibited this department from being saved:</h2>
+
+      <ul>
+        <% department.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+       </ul>
+       <%end%>
+    </div>
+<!-- data entry code -->
+     <fieldset class="field">
+		<legend><strong> Department Name </strong></legend>
+		<%= form.radio_button :name, "X ray" %>
+        <%= form.label :X_ray %>
+        <br>
+		<%= form.radio_button :name, "Pythology" %>
+        <%= form.label :Pythology %>	
+        <br>	
+		<%= form.radio_button :name, "Dental" %>
+        <%= form.label :Dental %>	
+        <br>
+        <%= form.radio_button :name, "OPD" %>
+        <%= form.label :OPD %>	
+        <br>
+        <%= form.radio_button :name, "Healthcare" %>
+        <%= form.label :Healthcare %>	
+        <br>
+	</fieldset>
+
+	<fieldset>
+		<legend><strong> Duty In</strong></legend>
+		<%= form.time_field :clock_in %>
+	</fieldset>
+	<fieldset>
+		<legend><strong> Duty out</strong></legend>
+		<%= form.time_field :clock_out %>
+	</fieldset>
+	<fieldset>
+		<legend><strong> Doctor Incharge</strong></legend>
+		<%#debugger%>
+		<%#= collection_select(:department, :user_id, User.all, :id, :username, prompt: true)%>
+		<%= form.select :user_id, User.all.collect { |u| [u.username, u.id ] }, include_blank: true%>
+	</fieldset>
+
+	<div class="field">
+		<%= form.hidden_field :date, value: Time.current %>
+	</div> 
+
+	<div class="field" align="center">
+    	<%= form.submit %>
+    </div>
+
+
+	<%end %>
+</fieldset>

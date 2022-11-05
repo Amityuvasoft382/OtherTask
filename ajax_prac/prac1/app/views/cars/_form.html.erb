@@ -1,0 +1,87 @@
+<%= form_with(model: car ,local: false) do |form| %>
+  <% if car.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+      <ul>
+        <% car.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :car_type %>
+    <fieldset>
+    <%= form.radio_button :car_type, "Sedan" %>
+        <%= form.label :Sedan %>
+        <br>
+  
+  
+    <%= form.radio_button :car_type, "Hatch Back" %>
+        <%= form.label :Hatch_Back %> 
+        <br>  
+    
+    <%= form.radio_button :car_type, "SUV" %>
+        <%= form.label :SUV %>  
+        <br>  
+    
+    <%= form.radio_button :car_type, "MUV" %>
+        <%= form.label :MUV %>  
+        <br>
+
+        <%= form.radio_button :car_type, "Super" %>
+        <%= form.label :Super %>
+        <br>
+  
+  
+    <%= form.radio_button :car_type, "Sports" %>
+        <%= form.label :Sports %>
+        <br>    
+    
+    <%= form.radio_button :car_type, "Convertible" %>
+        <%= form.label :Convertible %>
+        <br>    
+    
+    <%= form.radio_button :car_type, "Crossover" %>
+        <%= form.label :Crossover %>
+        <br>
+
+        <%= form.radio_button :car_type, "Mussle car" %>
+        <%= form.label :Mussle_car %>
+        <br>
+
+        <%= form.radio_button :car_type, "Coupe" %>
+        <%= form.label :Coupe %>
+        <br>
+
+        <%= form.radio_button :car_type, "Luxery" %>
+        <%= form.label :Luxery %>
+</fieldset>
+  </div>
+  <div class="field">
+    <%= form.label :Ecofriendly %>
+    <%= form.radio_button :ecofriendly, " Yes " %>
+        <%= form.label :Yes %>
+        <br>
+    <%= form.radio_button :ecofriendly, " No " %>
+        <%= form.label :No %>
+
+    </div>
+
+
+  
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.color_field :color%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

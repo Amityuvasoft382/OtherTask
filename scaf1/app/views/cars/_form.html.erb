@@ -1,0 +1,88 @@
+<%= form_with(model: @car,id:"new_car",local: false) do |form|%>
+<!-- Errors code -->
+<% if car.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+	<ul>
+		<% car.errors.each do |error| %>
+		<li><%= error.full_message %></li>
+		<% end %>
+	</ul>
+	<%end%>
+</div>
+<!-- Form code start here -->
+
+<div class="container p-5 my-5 bg-dark text-white">
+	<strong><%= form.label :" Company name  :"%></strong><%= form.text_field :c_name %>
+</div>
+<div class="container p-5 my-5 bg-primary text-white">
+	<strong><%= form.label :" Model name    :"%></strong><%= form.text_field :m_name %>
+</div>
+<div class="container p-5 my-5 bg-dark text-white">
+	<strong><%= form.label :"Eco Friendly   :"%></strong><br>
+	<%= form.radio_button :ecofriendly, " Yes " %>
+	<%= form.label :Yes %>
+	<br>
+	<%= form.radio_button :ecofriendly, " No " %>
+	<%= form.label :No %>
+</div>
+<div class="container p-5 my-5 bg-white text-black">
+	<strong><%= form.label :"Car Type       :"%></strong><br>
+	<%= form.radio_button :car_type, "Sedan" %>
+	<%= form.label :Sedan %>
+	<br>
+
+
+	<%= form.radio_button :car_type, "Hatch Back" %>
+	<%= form.label :Hatch_Back %>	
+	<br>	
+
+	<%= form.radio_button :car_type, "SUV" %>
+	<%= form.label :SUV %>	
+	<br>	
+
+	<%= form.radio_button :car_type, "MUV" %>
+	<%= form.label :MUV %>	
+	<br>
+
+	<%= form.radio_button :car_type, "Super" %>
+	<%= form.label :Super %>
+	<br>
+
+
+	<%= form.radio_button :car_type, "Sports" %>
+	<%= form.label :Sports %>
+	<br>		
+
+	<%= form.radio_button :car_type, "Convertible" %>
+	<%= form.label :Convertible %>
+	<br>		
+
+	<%= form.radio_button :car_type, "Crossover" %>
+	<%= form.label :Crossover %>
+	<br>
+
+	<%= form.radio_button :car_type, "Mussle car" %>
+	<%= form.label :Mussle_car %>
+	<br>
+
+	<%= form.radio_button :car_type, "Coupe" %>
+	<%= form.label :Coupe %>
+	<br>
+
+	<%= form.radio_button :car_type, "Luxery" %>
+	<%= form.label :Luxery %>
+
+</div>
+<div class="container p-5 my-5 bg-dark text-white">
+	<strong><%= form.label :" Speed  :"%></strong><%= form.text_field :speed %>
+</div>
+<div class="container p-5 my-5 bg-primary text-white">
+	<strong><%= form.label :" Color  :"%></strong><%= form.color_field :color %>
+</div>
+<div class="field" align="center">
+	<%= form.submit %>
+</div>
+
+<%end%>

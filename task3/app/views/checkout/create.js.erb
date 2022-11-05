@@ -1,0 +1,11 @@
+var stripe = Stripe("pk_test_51LPlRlSH7WN3n14BgRL2pKwAJJAvAG12jYh97wjCS6S48mquf3P6ov36MGlD2H9DL0JaQtfDYqJl1AGDnr9M3QUl000dog4n7T");
+
+stripe.redirectToCheckout({
+    // Make the id field from the Checkout Session creation API response
+    // available to this file, so you can provide it as argument here
+    // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+    sessionId: '<%= @session.id %>'
+    
+  }).then(function (result) {
+    console.log(result.error.message);
+  });
